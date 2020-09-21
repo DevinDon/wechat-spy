@@ -36,7 +36,9 @@
     "@iinfinity/logger": "^0.3.4",
     "@rester/core": "^0.10.24",
     "class-validator": "^0.12.2",
-    "mongodb": "^3.6.0"
+    "mongodb": "^3.6.0",
+    "sqlite3": "^5.0.0",
+    "typeorm": "^0.2.26"
   },
   "devDependencies": {
     "@types/jasmine": "3.5.14",
