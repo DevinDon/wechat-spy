@@ -11,11 +11,4 @@ export class ChatroomView {
   @Inject()
   private controller!: ChatroomController;
 
-  @GET('{{id}}')
-  async getOneByID(
-    @PathVariable('id') id: number
-  ) {
-    return this.controller.selectOneByID(+id);
-  }
-
 }
