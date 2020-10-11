@@ -4,6 +4,10 @@
 
 http://maskray.me/blog/2014-10-14-wechat-export
 
+数据库密码计算方式：
+
+拼接 `大写 IMEI` 与 `UIN`，计算 `小写 MD5`，取前 7 位。
+
 ## Rester Config
 
 ### MongoDB
