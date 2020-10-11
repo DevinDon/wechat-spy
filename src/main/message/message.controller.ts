@@ -8,8 +8,4 @@ import { MessageEntity } from './message.entity';
 @Controller()
 export class MessageController {
 
-  async selectOneByID(id: Message['id']) {
-    return MessageEntity.findOne(id);
-  }
-
 }
