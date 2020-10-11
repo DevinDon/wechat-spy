@@ -5,6 +5,7 @@ export interface Config {
   UIN: string;
   KEY: string;
   DATABASE: string;
+  ID: string;
 }
 
 export function loadConfig(): Config {
