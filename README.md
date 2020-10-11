@@ -1,10 +1,12 @@
-# Rester Template
+# Wechat Spy
 
-Rester Template.
+## SQLCipher
 
-# Rester Config
+http://maskray.me/blog/2014-10-14-wechat-export
 
-## MongoDB
+## Rester Config
+
+### MongoDB
 
 > MongoDB as default database.
 
@@ -24,7 +26,7 @@ Rester Template.
 }
 ```
 
-## SQLite
+### SQLite
 
 ```json
 {
@@ -40,7 +42,7 @@ Rester Template.
 }
 ```
 
-## PostgreSQL
+### PostgreSQL
 
 ```json
 {
@@ -55,7 +57,7 @@ Rester Template.
 }
 ```
 
-## MySQL
+### MySQL
 
 ```json
 {
@@ -81,7 +83,7 @@ Rester Template.
 }
 ```
 
-# [THE MIT LICENSE](https://raw.githubusercontent.com/DevinDon/license/master/THE%20MIT%20LICENSE)
+## [THE MIT LICENSE](https://raw.githubusercontent.com/DevinDon/license/master/THE%20MIT%20LICENSE)
 
 Copyright © 2018+ Devin Don
 
