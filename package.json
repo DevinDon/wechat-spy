@@ -1,5 +1,5 @@
 {
-  "name": "template.rester",
+  "name": "wechat-spy",
   "version": "0.10.18",
   "description": "Rester Template.",
   "main": "dist/index.js",
@@ -37,8 +37,7 @@
     "@rester/core": "^0.10.24",
     "class-validator": "^0.12.2",
     "mongodb": "^3.6.0",
-    "sqlite3": "^5.0.0",
-    "typeorm": "^0.2.26"
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
     "@types/jasmine": "3.5.14",
