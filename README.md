@@ -1,8 +1,16 @@
 # Wechat Spy
 
+## Structure
+
+1. Record
+2. Discussion
+3. QA
+4. User
+5. Group
+
 ## SQLCipher
 
-http://maskray.me/blog/2014-10-14-wechat-export
+<http://maskray.me/blog/2014-10-14-wechat-export>
 
 数据库密码计算方式：
 
