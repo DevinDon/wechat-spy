@@ -5,6 +5,9 @@ import { User } from './User';
  */
 export interface Record {
 
+  /** 微信消息 ID */
+  id: string;
+
   /** 发言人 */
   user: User;
 
