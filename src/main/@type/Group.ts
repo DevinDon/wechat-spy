@@ -1,4 +1,5 @@
-import { User } from './User';
+import { Course } from './Course';
+import { User, UserSymbol } from './User';
 
 export interface Group {
 
@@ -9,7 +10,7 @@ export interface Group {
   name: string;
 
   /** 群内人员，包括助教与班班 */
-  users: User['id'][];
+  users: UserSymbol[];
 
   /** 服务开始日期 */
   start: Date;
@@ -17,7 +18,7 @@ export interface Group {
   /** 服务结束日期 */
   end: string;
 
-  /** 官网链接 */
-  link: string;
+  /** 课程信息 */
+  course: Course;
 
 }

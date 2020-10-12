@@ -1,3 +1,5 @@
+import { UserSymbol } from './User';
+
 /**
  * 格式化后的记录
  */
@@ -7,7 +9,7 @@ export interface Record {
   id: number;
 
   /** 发言人 */
-  user: string;
+  user: UserSymbol;
 
   /** 发送时间 */
   time: Date;
@@ -16,7 +18,7 @@ export interface Record {
   content: string;
 
   /** @ 的用户 */
-  ats: string[];
+  ats: UserSymbol[];
 
   /** 引用的内容 */
   quote?: Record;
