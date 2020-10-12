@@ -11,4 +11,8 @@ export class ContactController {
     return ContactEntity.find({ type: 2 });
   }
 
+  async selectUserByWXID({ wxid }: { wxid: string }) {
+    return ContactEntity.findOne({ username: wxid });
+  }
+
 }
