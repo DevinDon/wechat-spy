@@ -1,13 +1,16 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryColumn } from 'typeorm';
 import { Contact } from './contact.model';
 
-@Entity('contact')
+@Entity('rcontact')
 export class ContactEntity extends BaseEntity implements Contact {
 
-  @PrimaryGeneratedColumn()
-  id!: number;
+  @PrimaryColumn()
+  username!: string;
 
-  @Column({ nullable: true })
-  content?: string;
+  @Column()
+  nickname!: string;
+
+  @Column()
+  type!: number;
 
 }

@@ -11,11 +11,9 @@ export class ContactView {
   @Inject()
   private controller!: ContactController;
 
-  @GET('{{id}}')
-  async getOneByID(
-    @PathVariable('id') id: number
-  ) {
-    return this.controller.selectOneByID(+id);
+  @GET('group')
+  async getAllGroup() {
+    return this.controller.selectAllGroup();
   }
 
 }

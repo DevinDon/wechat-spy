@@ -1,5 +1,4 @@
 import { Controller } from '@rester/core';
-import { Contact } from './contact.model';
 import { ContactEntity } from './contact.entity';
 
 // insert, delete, update, select
@@ -8,8 +7,8 @@ import { ContactEntity } from './contact.entity';
 @Controller()
 export class ContactController {
 
-  async selectOneByID(id: Contact['id']) {
-    return ContactEntity.findOne(id);
+  async selectAllGroup() {
+    return ContactEntity.find({ type: 2 });
   }
 
 }
