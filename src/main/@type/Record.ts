@@ -1,5 +1,8 @@
 import { User } from './User';
 
+/**
+ * 格式化后的记录
+ */
 export interface Record {
 
   /** 发言人 */
@@ -12,7 +15,7 @@ export interface Record {
   content: string;
 
   /** @ 的用户 */
-  ats?: User[];
+  ats: User[];
 
   /** 引用的内容 */
   quote?: Record;
