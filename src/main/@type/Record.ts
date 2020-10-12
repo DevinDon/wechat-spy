@@ -1,15 +1,13 @@
-import { User } from './User';
-
 /**
  * 格式化后的记录
  */
 export interface Record {
 
   /** 微信消息 ID */
-  id: string;
+  id: number;
 
   /** 发言人 */
-  user: User;
+  user: string;
 
   /** 发送时间 */
   time: Date;
@@ -18,7 +16,7 @@ export interface Record {
   content: string;
 
   /** @ 的用户 */
-  ats: User[];
+  ats: string[];
 
   /** 引用的内容 */
   quote?: Record;
