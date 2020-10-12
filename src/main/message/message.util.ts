@@ -1,5 +1,5 @@
 import { Record } from '../@type/Record';
-import { User } from '../@type/User';
+import { User, UserSymbol } from '../@type/User';
 import { ContactEntity } from '../contact/contact.entity';
 import { Message } from './message.model';
 import { MessageType } from './message.type';

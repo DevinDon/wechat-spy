@@ -12,6 +12,6 @@ const rester = new Rester()
   .add(CORSHandler)
   .end();
 
-rester.configDatabase.setEntities([ContactEntity, MessageEntity]).end();
+rester.configDatabases.setEntities([ContactEntity, MessageEntity]).end();
 
 rester.listen();
