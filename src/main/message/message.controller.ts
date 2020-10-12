@@ -9,7 +9,7 @@ interface ParamSelectMessagesToRecords {
   start: number;
   end: number;
   group: string;
-  limit: number;
+  take: number;
   skip: number;
 }
 
@@ -19,14 +19,14 @@ interface ParamSelectMessagesToRecords {
 @Controller()
 export class MessageController {
 
-  async selectMessagesToRecords({ start, end, group, limit, skip }: ParamSelectMessagesToRecords): Promise<Record[]> {
+  async selectMessagesToRecords({ start, end, group, take, skip }: ParamSelectMessagesToRecords): Promise<Record[]> {
     const messages = await createQueryBuilder(MessageEntity)
       .select()
       .andWhere('talker = :group', { group })
       .andWhere('createTime >= :start', { start })
       .andWhere('createTime <= :end', { end })
       .skip(skip)
-      .limit(limit)
+      .take(take)
       .getMany();
     return messages.map(
       message => {

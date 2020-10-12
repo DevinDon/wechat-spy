@@ -36,7 +36,7 @@ export function parseNormal(text: string): ParsedRecord {
   const ats: string[] = REG_NORMAL_ATS.test(content)
     ? content.match(REG_NORMAL_ATS)!
     : [];
-  return { ats, content, user };
+  return { ats, content, user } as any;
 }
 
 /**
