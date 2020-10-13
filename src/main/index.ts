@@ -1,17 +1,24 @@
 import { CORSHandler, Rester } from '@rester/core';
-import { ContactEntity } from './contact/contact.entity';
-import { ContactView } from './contact/contact.view';
-import { MessageEntity } from './message/message.entity';
-import { MessageView } from './message/message.view';
+import { ChatroomEntity } from './wechat/chatroom';
+import { ContactEntity } from './wechat/contact';
+import { MessageEntity } from './wechat/message';
+import { WechatView } from './wechat/wechat.view';
 
 const rester = new Rester()
   .configViews
-  .add(ContactView, MessageView)
+  .add(WechatView)
   .end()
   .configHandlers
   .add(CORSHandler)
   .end();
 
-rester.configDatabases.setEntities([ContactEntity, MessageEntity]).end();
+rester
+  .configDatabases
+  .setEntities([
+    ChatroomEntity,
+    ContactEntity,
+    MessageEntity
+  ])
+  .end();
 
 rester.listen();
