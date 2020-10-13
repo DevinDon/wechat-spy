@@ -10,10 +10,10 @@ export interface User {
   type: UserType;
 
   /** 用户报名码，只有已报名的学员有，可能报名了多门课程 */
-  codes?: string[];
+  codes: string[];
 
-  /** 记录到系统的日期 */
-  start: Date;
+  /** 数据更新日期 */
+  update: Date;
 
 }
 

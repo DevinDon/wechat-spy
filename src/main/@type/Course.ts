@@ -7,7 +7,7 @@ import { UserSymbol } from './User';
 export interface Course {
 
   /** 课程 ID */
-  id: string;
+  id: number;
 
   /** 官网链接 */
   link: string;

@@ -1,5 +1,5 @@
 import { Course } from './Course';
-import { User, UserSymbol } from './User';
+import { UserSymbol } from './User';
 
 export interface Group {
 
@@ -16,7 +16,10 @@ export interface Group {
   start: Date;
 
   /** 服务结束日期 */
-  end: string;
+  end: Date;
+
+  /** 数据更新日期 */
+  update: Date;
 
   /** 课程信息 */
   course: Course;
