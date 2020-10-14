@@ -32,5 +32,5 @@ export type UserSymbol = Pick<User, 'id' | 'type'>;
  * - 其他
  */
 export enum UserType {
-  Teacher, Student, AssistantTeacher, HeadTeacher, Other
+  Teacher, Student, AssistantTeacher, HeadTeacher, Unknown
 }

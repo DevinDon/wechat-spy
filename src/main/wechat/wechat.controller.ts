@@ -63,7 +63,7 @@ export class WechatController {
       user => ({
         id: user.username,
         name: user.nickname,
-        type: UserType.Other,
+        type: UserType.Unknown,
         codes: [],
         update: new Date(),
         usable: true
