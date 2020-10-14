@@ -8,8 +8,4 @@ import { CourseEntity } from './course.entity';
 @Controller()
 export class CourseController {
 
-  async selectOneByID(id: Course['id']) {
-    return CourseEntity.findOne(id);
-  }
-
 }

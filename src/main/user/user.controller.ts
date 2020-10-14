@@ -8,8 +8,4 @@ import { UserEntity } from './user.entity';
 @Controller()
 export class UserController {
 
-  async selectOneByID(id: User['id']) {
-    return UserEntity.findOne(id);
-  }
-
 }

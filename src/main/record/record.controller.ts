@@ -8,8 +8,4 @@ import { RecordEntity } from './record.entity';
 @Controller()
 export class RecordController {
 
-  async selectOneByID(id: Record['id']) {
-    return RecordEntity.findOne(id);
-  }
-
 }

@@ -11,11 +11,10 @@ export class UserView {
   @Inject()
   private controller!: UserController;
 
-  @GET('{{id}}')
-  async getOneByID(
-    @PathVariable('id') id: number
-  ) {
-    return this.controller.selectOneByID(+id);
-  }
+  @POST('')
+  async addUser() { }
+
+  @PUT('{{id}}')
+  async updateUser() { }
 
 }

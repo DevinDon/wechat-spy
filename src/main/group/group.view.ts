@@ -11,11 +11,4 @@ export class GroupView {
   @Inject()
   private controller!: GroupController;
 
-  @GET('{{id}}')
-  async getOneByID(
-    @PathVariable('id') id: number
-  ) {
-    return this.controller.selectOneByID(+id);
-  }
-
 }

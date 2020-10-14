@@ -11,11 +11,4 @@ export class CourseView {
   @Inject()
   private controller!: CourseController;
 
-  @GET('{{id}}')
-  async getOneByID(
-    @PathVariable('id') id: number
-  ) {
-    return this.controller.selectOneByID(+id);
-  }
-
 }

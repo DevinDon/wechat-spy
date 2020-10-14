@@ -11,11 +11,4 @@ export class RecordView {
   @Inject()
   private controller!: RecordController;
 
-  @GET('{{id}}')
-  async getOneByID(
-    @PathVariable('id') id: number
-  ) {
-    return this.controller.selectOneByID(+id);
-  }
-
 }

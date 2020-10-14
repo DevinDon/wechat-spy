@@ -8,8 +8,4 @@ import { GroupEntity } from './group.entity';
 @Controller()
 export class GroupController {
 
-  async selectOneByID(id: Group['id']) {
-    return GroupEntity.findOne(id);
-  }
-
 }
