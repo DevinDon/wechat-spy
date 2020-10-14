@@ -2,9 +2,9 @@ import { logger } from '@iinfinity/logger';
 import { Controller } from '@rester/core';
 import { execSync } from 'child_process';
 import { existsSync, mkdirSync, readFileSync } from 'fs';
-import { Group } from '../@type/Group';
-import { User, UserSymbol, UserType } from '../@type/User';
 import { getLocalISODateTime } from '../@util';
+import { Group } from '../group/group.model';
+import { User, UserType, UserSymbol } from '../user/user.model';
 import { ChatroomEntity } from './chatroom';
 import { ContactEntity, ContactType } from './contact';
 
@@ -65,7 +65,8 @@ export class WechatController {
         name: user.nickname,
         type: UserType.Other,
         codes: [],
-        update: new Date()
+        update: new Date(),
+        usable: true
       })
     );
 
@@ -95,9 +96,7 @@ export class WechatController {
         update: new Date(),
         course: {
           id: 0,
-          link: '',
-          groups: [],
-          students: []
+          name: ''
         }
       })
     );
