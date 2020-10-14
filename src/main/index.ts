@@ -1,5 +1,4 @@
 import { CORSHandler, Rester } from '@rester/core';
-import { SafeReturnHandler } from './@handler';
 import { CourseEntity } from './course/course.entity';
 import { CourseView } from './course/course.view';
 import { GroupEntity } from './group/group.entity';
@@ -27,7 +26,7 @@ const rester = new Rester()
   )
   .end()
   .configHandlers
-  .add(CORSHandler, SafeReturnHandler)
+  .add(CORSHandler)
   .end();
 
 rester
