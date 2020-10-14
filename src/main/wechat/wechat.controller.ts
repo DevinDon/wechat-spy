@@ -4,7 +4,7 @@ import { execSync } from 'child_process';
 import { existsSync, mkdirSync, readFileSync } from 'fs';
 import { Group } from '../@type/Group';
 import { User, UserSymbol, UserType } from '../@type/User';
-import { getDate } from '../@util';
+import { getLocalISODateTime } from '../@util';
 import { ChatroomEntity } from './chatroom';
 import { ContactEntity, ContactType } from './contact';
 
@@ -27,19 +27,28 @@ export class WechatController {
   }
 
   async updateDatabase() {
-    const { KEY, DATABASE } = this.loadConfig();
+
     existsSync('out') || mkdirSync('out');
+
+    const { KEY, DATABASE } = this.loadConfig();
+
+    const date = getLocalISODateTime();
     const exportDB = 'decrypted.db';
-    const encryptedDB = `${getDate()}-encrypted.db`;
-    const decryptedDB = `${getDate()}-decrypted.db`;
+    const encryptedDB = `${date}.encrypted.db`;
+    const decryptedDB = `${date}.decrypted.db`;
+
     const commandCopy = `adb exec-out su -c "cp /data/data/com.tencent.mm/MicroMsg/${DATABASE}/EnMicroMsg.db /sdcard/${exportDB}"`;
     const commandPull = `adb pull /sdcard/${exportDB} out/${encryptedDB}`;
     const commandDecrypt = `sqlcipher out/${encryptedDB} 'PRAGMA key = "${KEY}"; PRAGMA cipher_use_hmac = off; PRAGMA kdf_iter = 4000; ATTACH DATABASE "out/${decryptedDB}" AS decrypted_database KEY ""; SELECT sqlcipher_export("decrypted_database"); DETACH DATABASE decrypted_database;'`;
     const commandBackup = `cp out/${decryptedDB} out/${exportDB}`;
+
     logger.info(`Copy to sdcard: ${execSync(commandCopy).length}`);
     logger.info(`Pull to local disk: ${execSync(commandPull).length}`);
     logger.info(`Decrypt: ${execSync(commandDecrypt).length}`);
     logger.info(`Export database: ${execSync(commandBackup).length}`);
+
+    return { date };
+
   }
 
   async selectAllUsersFromContactTable() {
