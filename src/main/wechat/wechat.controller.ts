@@ -9,6 +9,7 @@ import { ChatroomEntity } from './chatroom';
 import { ContactEntity, ContactType } from './contact';
 import { getConnection, EntityTarget } from 'typeorm';
 import { UserView } from '../user/user.view';
+import { GroupView } from '../group/group.view';
 
 export interface Config {
   IMEI: string;
@@ -25,6 +26,7 @@ export interface Config {
 export class WechatController {
 
   @Inject() private userView!: UserView;
+  @Inject() private groupView!: GroupView;
 
   private getRepo<T = any>(target: EntityTarget<T>) {
     return getConnection('wechat').getRepository(target);
@@ -96,6 +98,11 @@ export class WechatController {
 
   }
 
+  private parsePeroid(name: string): number {
+    const matchs = name.match(/第(.*)期/);
+    return (matchs && typeof matchs === 'number') ? +matchs : -1;
+  }
+
   async selectAllGroupsFromContactAndChatroom() {
 
     const contactList = await this.getRepo(ContactEntity).find({ type: ContactType.Group });
@@ -113,18 +120,31 @@ export class WechatController {
           .map<User>(id => users.find(user => user.id === id)!)
           .filter(user => user)
           .map<UserSymbol>(user => ({ id: user.id, type: user.type })) || [],
-        start: new Date(),
-        end: new Date(),
+        start: new Date(0),
+        end: new Date(0),
         update: new Date(),
         course: {
           id: 0,
           name: ''
         },
-        peroid: -1
+        peroid: this.parsePeroid(contact.nickname)
       })
     );
 
-    return groups;
+    const inserted: Promise<Pick<Group, 'id' | 'name'>>[] = groups.map(
+      group => this.groupView
+        .insert(group.id, group)
+        .then()
+        .catch(reason => ({ id: group.id, name: group.name }))
+    );
+
+    const ids = await Promise.all(inserted);
+
+    return ids;
+
+    // const updated = ids.map(({ id, name }) => this.groupView.update(id, { name }));
+
+    // return Promise.all(updated);
 
   }
 
