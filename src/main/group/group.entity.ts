@@ -27,4 +27,7 @@ export class GroupEntity extends BaseEntity implements Group {
   @Column()
   course!: CourseSymbol;
 
+  @Column()
+  peroid!: number;
+
 }

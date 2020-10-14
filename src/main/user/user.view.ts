@@ -1,4 +1,5 @@
 import { DELETE, GET, Inject, PathVariable, POST, PUT, RequestBody, requiredParams, requiredParamsInFields, View } from '@rester/core';
+import { safeResponse } from '../@util';
 import { UserController } from './user.controller';
 import { User } from './user.model';
 
@@ -16,7 +17,9 @@ export class UserView {
     @PathVariable('id') id: string
   ) {
     requiredParams({ id });
-    return this.controller.selectUserByID({ id });
+    return this.controller
+      .selectUserByID({ id })
+      .then(safeResponse);
   }
 
   /**
@@ -33,7 +36,9 @@ export class UserView {
   ) {
     requiredParams({ id });
     requiredParamsInFields(user, ['name', 'type', 'codes']);
-    return this.controller.insertUser({ ...user, id, update: new Date() });
+    return this.controller
+      .insertUser({ ...user, id, update: new Date() })
+      .then(safeResponse);
   }
 
   @PUT(':id')
@@ -42,7 +47,9 @@ export class UserView {
     @RequestBody() user: Partial<User> = {}
   ) {
     requiredParams({ id });
-    return this.controller.updateUser({ ...user, id, update: new Date() });
+    return this.controller
+      .updateUser({ ...user, id, update: new Date() })
+      .then(safeResponse);
   }
 
   @DELETE(':id')
@@ -50,7 +57,9 @@ export class UserView {
     @PathVariable('id') id: string
   ) {
     requiredParams({ id });
-    return this.controller.deleteUser({ id });
+    return this.controller
+      .deleteUser({ id })
+      .then(safeResponse);
   }
 
 }

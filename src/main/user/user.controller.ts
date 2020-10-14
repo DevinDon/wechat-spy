@@ -1,3 +1,4 @@
+import { logger } from '@iinfinity/logger';
 import { Controller, HTTP404Exception, HTTPException } from '@rester/core';
 import { UserEntity } from './user.entity';
 import { User } from './user.model';
@@ -15,15 +16,15 @@ export class UserController {
     const user = await UserEntity.findOne({ id });
     // 用户不存在则返回 404
     if (!user) {
-      throw new HTTP404Exception(`WeChat ID ${id} does not exist.`, { message: `WeChat ID ${id} does not exist.` });
+      throw new HTTP404Exception(`WeChat ID ${id} does not exist.`, { id, message: `WeChat ID ${id} does not exist.` });
     }
     return user;
   }
 
   async insertUser(user: User) {
     // 用户存在，则不能插入
-    if (await UserEntity.findOne(user)) {
-      throw new HTTPException(409, `WeChat ID ${user.id} has existed`, { message: `WeChat ID ${user.id} has existed.` });
+    if (await UserEntity.findOne({ id: user.id })) {
+      throw new HTTPException(409, `WeChat ID ${user.id} has existed`, { id: user.id, message: `WeChat ID ${user.id} has existed.` });
     }
     await UserEntity.insert(user);
     return user;

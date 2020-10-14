@@ -1,12 +1,14 @@
 import { logger } from '@iinfinity/logger';
-import { Controller } from '@rester/core';
+import { Controller, Inject } from '@rester/core';
 import { execSync } from 'child_process';
 import { existsSync, mkdirSync, readFileSync } from 'fs';
-import { getLocalISODateTime } from '../@util';
+import { getLocalISODateTime, safeResponse } from '../@util';
 import { Group } from '../group/group.model';
 import { User, UserType, UserSymbol } from '../user/user.model';
 import { ChatroomEntity } from './chatroom';
 import { ContactEntity, ContactType } from './contact';
+import { getConnection, EntityTarget } from 'typeorm';
+import { UserView } from '../user/user.view';
 
 export interface Config {
   IMEI: string;
@@ -21,6 +23,12 @@ export interface Config {
 
 @Controller()
 export class WechatController {
+
+  @Inject() private userView!: UserView;
+
+  private getRepo<T = any>(target: EntityTarget<T>) {
+    return getConnection('wechat').getRepository(target);
+  }
 
   private loadConfig(): Config {
     return JSON.parse(readFileSync('key.json').toString());
@@ -51,15 +59,20 @@ export class WechatController {
 
   }
 
+  /**
+   * 先查询所有用户，然后插入到数据库中
+   *
+   * 如果数据库中已有数据，则更新用户名
+   */
   async selectAllUsersFromContactTable() {
 
-    const list = await ContactEntity
+    const list = await this.getRepo(ContactEntity)
       .createQueryBuilder('user')
       .select()
       .andWhere('"type" = :type', { type: ContactType.Friend })
       .orWhere('"type" = :type', { type: ContactType.Stranger })
       .getMany();
-    const users: User[] = list.map(
+    const inserted: Promise<Pick<User, 'id' | 'name'>>[] = list.map(
       user => ({
         id: user.username,
         name: user.nickname,
@@ -68,16 +81,25 @@ export class WechatController {
         update: new Date(),
         usable: true
       })
+    ).map(
+      user => this.userView
+        .insert(user.id, user)
+        .then()
+        .catch(reason => ({ id: user.id, name: user.name }))
     );
 
-    return users;
+    const ids = await Promise.all(inserted);
+
+    const updated = ids.map(({ id, name }) => this.userView.update(id, { name }));
+
+    return Promise.all(updated);
 
   }
 
   async selectAllGroupsFromContactAndChatroom() {
 
-    const contactList = await ContactEntity.find({ type: ContactType.Group });
-    const chatroomList = await ChatroomEntity.find();
+    const contactList = await this.getRepo(ContactEntity).find({ type: ContactType.Group });
+    const chatroomList = await this.getRepo(ChatroomEntity).find();
     const users = await this.selectAllUsersFromContactTable();
 
     const groups: Group[] = contactList.map(
