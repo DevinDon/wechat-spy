@@ -1,10 +1,14 @@
-import { BaseEntity, Column, Entity, ObjectIdColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, ObjectIdColumn, Index, ObjectID } from 'typeorm';
 import { User, UserType } from './user.model';
 
 @Entity('user')
 export class UserEntity extends BaseEntity implements User {
 
   @ObjectIdColumn()
+  _id!: ObjectID;
+
+  @Column()
+  @Index({ unique: true })
   id!: string;
 
   @Column()
@@ -18,5 +22,8 @@ export class UserEntity extends BaseEntity implements User {
 
   @Column()
   update!: Date;
+
+  @Column({ default: true })
+  usable!: boolean;
 
 }

@@ -15,6 +15,9 @@ export interface User {
   /** 数据更新日期 */
   update: Date;
 
+  /** 用户是否可用 */
+  usable: boolean;
+
 }
 
 export type UserSymbol = Pick<User, 'id' | 'type'>;
