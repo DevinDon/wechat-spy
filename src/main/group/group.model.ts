@@ -1,5 +1,5 @@
-import { Course } from './Course';
-import { UserSymbol } from './User';
+import { CourseSymbol } from '../course/course.model';
+import { UserSymbol } from '../user/user.model';
 
 export interface Group {
 
@@ -22,6 +22,8 @@ export interface Group {
   update: Date;
 
   /** 课程信息 */
-  course: Course;
+  course: CourseSymbol;
 
 }
+
+export type GroupSymbol = Pick<Group, 'id' | 'name'>;

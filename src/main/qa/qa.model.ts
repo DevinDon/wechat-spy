@@ -1,4 +1,4 @@
-import { UserSymbol } from './User';
+import { UserSymbol } from '../user/user.model';
 
 /**
  * Q/A 记录
