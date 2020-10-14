@@ -24,6 +24,9 @@ export interface Group {
   /** 课程信息 */
   course: CourseSymbol;
 
+  /** 期次 */
+  peroid: number;
+
 }
 
 export type GroupSymbol = Pick<Group, 'id' | 'name'>;

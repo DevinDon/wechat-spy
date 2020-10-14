@@ -97,7 +97,8 @@ export class WechatController {
         course: {
           id: 0,
           name: ''
-        }
+        },
+        peroid: -1
       })
     );
 
