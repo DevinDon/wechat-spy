@@ -1,11 +1,11 @@
-import { QA } from './QA';
-import { Quality } from './Quality';
-import { Record } from './Record';
+import { Quality } from '../@type/Quality';
+import { QA } from '../qa/qa.model';
+import { Record } from '../record/record.model';
 
 /**
  * 讨论
  */
-export abstract class Discussion {
+export class Discussion {
 
   /** 对话列表 */
   private list: Record[] = [];
@@ -38,7 +38,8 @@ export abstract class Discussion {
     throw new Error('not implement');
   }
 
+  save() {
+    throw new Error('not implement');
+  }
+
 }
-
-
-// discussion.list[1]
