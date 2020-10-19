@@ -30,4 +30,7 @@ export class GroupEntity extends BaseEntity implements Group {
   @Column()
   peroid!: number;
 
+  @Column({ default: false })
+  marked!: boolean;
+
 }

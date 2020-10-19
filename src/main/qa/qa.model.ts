@@ -23,4 +23,7 @@ export interface QA {
   /** 回答时间 */
   answerTime: Date;
 
+  /** 是否已人工标记 */
+  marked: boolean;
+
 }

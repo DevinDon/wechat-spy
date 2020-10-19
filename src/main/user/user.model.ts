@@ -18,6 +18,9 @@ export interface User {
   /** 用户是否可用 */
   usable: boolean;
 
+  /** 是否已人工标记 */
+  marked: boolean;
+
 }
 
 export type UserSymbol = Pick<User, 'id' | 'type'>;

@@ -26,4 +26,7 @@ export class QAEntity extends BaseEntity implements QA {
   @Column()
   answerTime!: Date;
 
+  @Column({ default: false })
+  marked!: boolean;
+
 }

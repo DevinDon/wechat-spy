@@ -17,4 +17,7 @@ export class CourseEntity extends BaseEntity implements Course {
   @Column()
   groups!: GroupSymbol[];
 
+  @Column({ default: false })
+  marked!: boolean;
+
 }

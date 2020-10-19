@@ -26,4 +26,7 @@ export class UserEntity extends BaseEntity implements User {
   @Column({ default: true })
   usable!: boolean;
 
+  @Column({ default: false })
+  marked!: boolean;
+
 }

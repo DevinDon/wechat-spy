@@ -27,6 +27,9 @@ export interface Group {
   /** 期次 */
   peroid: number;
 
+  /** 是否已人工标记 */
+  marked: boolean;
+
 }
 
 export type GroupSymbol = Pick<Group, 'id' | 'name'>;

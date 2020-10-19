@@ -17,6 +17,9 @@ export interface Course {
   /** 有哪些期次的课程群聊，双向链接 */
   groups: GroupSymbol[];
 
+  /** 是否已人工标记 */
+  marked: boolean;
+
 }
 
 export type CourseSymbol = Pick<Course, 'id' | 'name'>;

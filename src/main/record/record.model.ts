@@ -14,7 +14,7 @@ export interface Record {
   /** 发送时间 */
   time: Date;
 
-  /** 内容，纯文本或资源 URL */
+  /** 内容，markdown 格式 */
   content: string;
 
   /** @ 的用户 */
@@ -22,6 +22,9 @@ export interface Record {
 
   /** 引用的内容 */
   quote?: Record;
+
+  /** 是否已人工标记 */
+  marked: boolean;
 
 }
 

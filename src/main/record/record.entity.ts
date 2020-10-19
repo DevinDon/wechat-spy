@@ -23,4 +23,7 @@ export class RecordEntity extends BaseEntity implements Record {
   @Column()
   quote?: Record;
 
+  @Column({ default: false })
+  marked!: boolean;
+
 }
