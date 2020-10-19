@@ -21,7 +21,7 @@ export interface Record {
   ats: UserSymbol[];
 
   /** 引用的内容 */
-  quote?: Record;
+  quote?: RecordSymbol;
 
   /** 是否已人工标记 */
   marked: boolean;
@@ -30,3 +30,13 @@ export interface Record {
 
 // record.ats
 // record.quote?.content
+
+export interface RecordSymbol {
+
+  /** 微信消息 ID */
+  id: number;
+
+  /** 发言人 */
+  user: UserSymbol;
+
+}
